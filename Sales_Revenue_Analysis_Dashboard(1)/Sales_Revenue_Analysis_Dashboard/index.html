@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales & Revenue Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-icon">↗</span><div><b>InsightFlow</b><small>BUSINESS ANALYTICS</small></div></div>
+    <div class="nav-label">WORKSPACE</div>
+    <a class="nav active" href="#overview">▦ <span>Overview</span></a>
+    <a class="nav" href="#charts">▥ <span>Sales Analytics</span></a>
+    <a class="nav" href="#products">▤ <span>Products</span></a>
+    <div class="sidebar-bottom"><div class="avatar">SA</div><div><b>Sales Analyst</b><small>Dashboard viewer</small></div></div>
+  </aside>
+
+  <main class="main" id="overview">
+    <header class="topbar">
+      <div><p class="eyebrow">BUSINESS INTELLIGENCE / OVERVIEW</p><h1>Sales & Revenue Dashboard</h1><p class="sub">Track performance, discover trends, and make data-driven decisions.</p></div>
+      <label class="upload-btn">＋ Import CSV <input id="fileInput" type="file" accept=".csv,text/csv" hidden /></label>
+    </header>
+
+    <section class="toolbar">
+      <div><label for="dateFilter">Period</label><select id="dateFilter"><option value="all">All dates</option><option value="30">Last 30 days</option><option value="90">Last 90 days</option><option value="365">Last 12 months</option></select></div>
+      <div><label for="regionFilter">Region</label><select id="regionFilter"><option value="all">All regions</option></select></div>
+      <div><label for="categoryFilter">Category</label><select id="categoryFilter"><option value="all">All categories</option></select></div>
+      <button id="resetBtn" class="reset-btn">Reset filters</button>
+      <span id="dataStatus" class="data-status">Sample dataset loaded</span>
+    </section>
+
+    <section class="kpi-grid">
+      <article class="kpi-card"><div class="kpi-top"><span>Total Revenue</span><span class="kpi-icon purple">$</span></div><h2 id="revenueKpi">$0</h2><p><span class="dot purple-dot"></span> Revenue from selected data</p></article>
+      <article class="kpi-card"><div class="kpi-top"><span>Total Orders</span><span class="kpi-icon blue">▣</span></div><h2 id="ordersKpi">0</h2><p><span class="dot blue-dot"></span> Unique order records</p></article>
+      <article class="kpi-card"><div class="kpi-top"><span>Units Sold</span><span class="kpi-icon green">↗</span></div><h2 id="unitsKpi">0</h2><p><span class="dot green-dot"></span> Total quantity sold</p></article>
+      <article class="kpi-card"><div class="kpi-top"><span>Average Order Value</span><span class="kpi-icon orange">◉</span></div><h2 id="aovKpi">$0</h2><p><span class="dot orange-dot"></span> Revenue per order</p></article>
+    </section>
+
+    <section class="chart-grid" id="charts">
+      <article class="panel wide"><div class="panel-heading"><div><h3>Revenue Over Time</h3><p>Monthly revenue performance</p></div><span class="pill">TREND</span></div><div class="chart-wrap"><canvas id="revenueChart"></canvas></div></article>
+      <article class="panel"><div class="panel-heading"><div><h3>Sales by Category</h3><p>Revenue contribution</p></div><span class="pill">MIX</span></div><div class="chart-wrap doughnut-wrap"><canvas id="categoryChart"></canvas></div><div id="categoryLegend" class="legend"></div></article>
+      <article class="panel"><div class="panel-heading"><div><h3>Revenue by Region</h3><p>Compare regional results</p></div><span class="pill">REGION</span></div><div class="chart-wrap"><canvas id="regionChart"></canvas></div></article>
+      <article class="panel wide" id="products"><div class="panel-heading"><div><h3>Top Performing Products</h3><p>Ranked by revenue</p></div><span class="pill">TOP 5</span></div><div class="chart-wrap"><canvas id="productChart"></canvas></div></article>
+    </section>
+
+    <section class="panel table-panel">
+      <div class="panel-heading"><div><h3>Recent Sales Records</h3><p>Filtered transaction details</p></div><button id="downloadBtn" class="secondary-btn">↓ Export filtered CSV</button></div>
+      <div class="table-scroll"><table><thead><tr><th>Order ID</th><th>Date</th><th>Product</th><th>Category</th><th>Region</th><th>Units</th><th>Revenue</th></tr></thead><tbody id="salesTable"></tbody></table></div>
+      <p class="table-foot" id="rowCount">Showing 0 records</p>
+    </section>
+    <footer>InsightFlow Analytics <span>•</span> Demo dashboard for learning data visualization</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
